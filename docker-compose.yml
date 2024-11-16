@@ -1,0 +1,20 @@
+services:
+  test_container:
+    image: ros_humble
+    command: 
+      - /bin/bash
+    network_mode: host
+    ipc: host
+    volumes:
+      - type: bind
+        source: ./src
+        target: /my_source_code
+      - type: bind
+        source: /temp/.X11-unix
+        target: /temp/.X11-unix
+        read_only: false
+    environment:
+      - DISPLAY
+    user: ros
+    tty: true
+    stdin_open: true
